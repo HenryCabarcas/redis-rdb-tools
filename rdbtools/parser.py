@@ -953,13 +953,13 @@ class RdbParser(object):
             module_id >>= 6
         return ''.join(name)
 
-    def verify_magic_string(self, magic_string) :
+    def _magic_string(self, magic_string) :
         if magic_string != b'REDIS' :
-            raise Exception('verify_magic_string', 'Invalid File Format')
+            raise Exception('_magic_string', 'Invalid File Format')
 
     def verify_version(self, version_str) :
         version = int(version_str)
-        if version < 1 or version > 9:
+        if version < 1 or version > 12:
             raise Exception('verify_version', 'Invalid RDB version number %d' % version)
         self._rdb_version = version
 
